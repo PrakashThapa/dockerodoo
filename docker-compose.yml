@@ -11,7 +11,8 @@ services:
     volumes:
       - odoo-web-data:/var/lib/odoo
       - ./config:/etc/odoo
-      - ./addons:/mnt/extra-addons
+      - ./addons/general:/mnt/extra-addons
+      - ./addons/swiss:/mnt/swiss-addons
     environment:
       - ADDONS_REPO=https://github.com/OCA/business-requirement.git
   db:
@@ -21,6 +22,8 @@ services:
       - POSTGRES_PASSWORD=odoo
       - POSTGRES_USER=odoo
       - PGDATA=/var/lib/postgresql/data/pgdata
+    ports:
+      - "5432:5432"
     volumes:
       - odoo-db-data:/var/lib/postgresql/data/pgdata
   pgadmin:
